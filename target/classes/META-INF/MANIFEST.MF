@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: ethanhou
+Build-Jdk: 11.0.1
+Implementation-Title: Spring-Boot-Session-Controller
+Implementation-Version: 2.0.3.RELEASE
+Implementation-Vendor-Id: com.javainuse
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/boot-session
+Created-By: Maven Integration for Eclipse
+
