@@ -4,9 +4,9 @@
 实现一个Session控制器(实现client端)。这里的Session 可以想象为一些有时间长度的会话请求。会话起停需要通过向服务器提供的http 接口发送请求来控制。
 
 ## Environment
-Java JDK 11
-Spring boot 2.0.3
-IDE Eclipse
+- Java JDK 11
+- Spring boot 2.0.3
+- IDE Eclipse
 
 ## 运行步骤
 1. 导入整个maven项目
