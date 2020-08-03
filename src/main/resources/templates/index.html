@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Session Controller</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Session Controller</h1>
+	<div>
+		<form th:action="@{/start}" method="post">
+		    <h3>Please input the session number and session lifetime, then click 'Generate Sessions'.</h3>
+		    <h4>The default lifetime is 1 min.</h4>
+			<textarea name="num" cols="12" rows="1" placeholder="Session nums"></textarea>
+			<textarea name="time" cols="12" rows="1" placeholder="Session time"></textarea>
+			<input type="submit" value="Generate Sessions" />
+		</form>
+	</div>
+	<hr />
+	<div>
+		<form th:action="@{/adjust}" method="post">
+		    <h3>Please input the session ID and minutes to adjust the session.</h3>
+		    <h4>Example: 3(Add 3 mins) || -2(Minus 2 mins)</h4>
+			<textarea name="id" cols="12" rows="1" placeholder="Session ID"></textarea>
+			<textarea name="min" cols="12" rows="1" placeholder="Minutes"></textarea>
+			<input type="submit" value="Adjust Session" />
+		</form>
+	</div>
+	<hr />
+	<div>
+        <form th:action="@{/stop}" method="post">
+		    <h3>Please input the session ID and click 'Stop Session' to stop a session.</h3>
+		    <h3>Leave sessionID as empty and click 'Stop Session' to stop program gracefully.</h3>
+			<textarea name="id" cols="12" rows="1" placeholder="Session ID"></textarea>
+			<input type="submit" value="Stop Session" />
+		</form>
+	</div>
+	<hr />
+	<div>
+		<h3>Active sessions</h3>
+		<table class="table">
+            <tr >
+                <th>Session ID</th>
+                <th>Version</th>
+                <th>TMGIPool</th>
+                <th>TMGI</th>
+                <th>Start Time</th>
+                <th>Stop Time</th>
+                <th>Action</th>
+            </tr>
+            <tbody>
+                <tr th:each="se : ${sessionList}">
+                    <td th:text="${se.getDeliverySessionId()}"></td>
+                    <td th:text="${se.getVersion()}"></td>
+                    <td th:text="${se.getTMGIPool()}"></td>
+                    <td th:text="${se.getTMGI()}"></td>
+                    <td th:text="${se.getStartTime()}"></td>
+                    <td th:text="${se.getStopTime()}"></td>
+                    <td th:text="${se.getAction()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
