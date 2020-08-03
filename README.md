@@ -25,13 +25,17 @@ IDE Eclipse
 - [x] 支持动态调整所有session时长
 - [x] 有异常处理
 - [x] 可优雅停止
-- [ ] 支持异步发送 ，并提供方案说明 （准备使用Ajax去进行异步操作，由于时间关系暂未支持）
+- [ ] 支持异步发送，并提供方案说明 （可以使用Ajax去进行异步操作，由于时间关系暂未支持）
 
 ## Flowchart
 <img src="https://github.com/ethanhou99/boot-session/blob/master/flowchart.png"/>
 
 ## Implementation and Algorithms
-- 全局利用ConcurrentHashMap来
+- 全局利用ConcurrentHashMap来存储活跃的session来满足并发需求，从而实现对指定session的时长更改或停止。
+- Session的停止时间可以直接通过修改Session实例来动态实现，如果停止时间早于当前时间，则session会直接销毁。
+- Session 默认时长为1分钟，用户可以在创建实例时对sessions进行集中的时长更改。
+- 如果用户不输入停止的sessionID并点击stop session按钮，则会进入到优雅停止的进程。该方法采用lazy algorithm，在程序停止前遍历一遍ConcurrentHashMap来寻找最晚停止时间，当前时间晚于最晚停止时间时程序退出。
+- 客户端界面只使用了HTML进行了简单的支持，未来如果需要实现异步操作可以添加Spring boot对JSP的支持，使用Ajax进行异步发送。
 
 ## Interface
 <img src="https://github.com/ethanhou99/boot-session/blob/master/Template.png"/>
